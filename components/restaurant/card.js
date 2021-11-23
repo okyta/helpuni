@@ -18,7 +18,7 @@ export default function blogPostWithImage() {
       <Box
         id="res"
         bg={useColorModeValue('white', 'gray.800')}
-        boxShadow={'5xl'}
+        boxShadow={'xl'}
         rounded={'md'}
         overflow={'hidden'}>
         <Stack
@@ -29,8 +29,7 @@ export default function blogPostWithImage() {
             fontSize={'sm'}
             fontWeight={500}
             bg={useColorModeValue('red.300', 'green.900')}
-            p={2}
-            px={3}
+            p={4}
             color={'tail'}
             rounded={'full'}>
             Informações

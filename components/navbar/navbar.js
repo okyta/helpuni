@@ -36,30 +36,30 @@ const NavLink = ({ children }) => (
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
-      <Box bg={useColorModeValue('white', 'gray.900')} px={4}>
-        <Flex h={20} alignItems={'center'} justifyContent={'space-between'}>
-          <Box/>
-
+      
+      <Box bg={useColorModeValue('white', 'gray.900')} px={2} >
+        <Flex h={20} alignItems={'center'} justifyContent={'center'}>
+          
           <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={125}>
+            <Stack direction={'row'} spacing={{ base: '20', sm: '100', md: '1030' }}>
             <Tooltip label="Modo noturno" rounded='full'>
-              <Button onClick={toggleColorMode}>
+              <Button onClick={toggleColorMode} rounded='full' size={'lg'}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
             </Tooltip>
-
               <Menu>
-                <Tooltip label="Bora tomar uma ? 🍺" rounded='full' isOpen bg="teal" placement="top">
+                <Tooltip label="Bora tomar uma ? 🍺" rounded='full' isOpen bg="teal" placement='bottom'>
                     <MenuButton
                       as={Button}
                       rounded={'full'}
                       variant={'link'}
                       cursor={'pointer'}
-                      minW={0}>
+                      minW={1}>
                       <Avatar
-                        size={'md'}
+                        size={'lg'}
                         src={'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'}
                       />
                     </MenuButton>
@@ -86,6 +86,7 @@ export default function Nav() {
           </Flex>
         </Flex>
       </Box>
+
     </>
   );
 }

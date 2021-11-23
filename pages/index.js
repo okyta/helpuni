@@ -11,10 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { Client } from "../prismic-configuration";
 import { RichText } from "prismic-reactjs";
-
-
 import {
-
   Grid,
   Tooltip,
   Link,
@@ -31,29 +28,54 @@ import {
   Text,
   Stack,
   Image,
+  IconButton,
+  useBreakpointValue,
+  Container,
 } from '@chakra-ui/react';
+
+// Here we have used react-icons package for the icons
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+// And react-slick as our Carousel Lib
+import Slider from 'react-slick';
 
 import { ExternalLinkIcon, ChevronDownIcon } from '@chakra-ui/icons'
 
-
+// Settings for the slider
+const settings = {
+  dots: true,
+  arrows: false,
+  fade: true,
+  infinite: true,
+  autoplay: true,
+  speed: 500,
+  autoplaySpeed: 4000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 
 export default function Home({dce, atleticas, empresas}) {
 
+  // As we have used custom buttons, we need a reference variable to
+  // change the state
+  const [slider, setSlider] = useState(null);
+
+  // These are the breakpoints which changes the position of the
+  // buttons as the screen size changes
+  const top = useBreakpointValue({ base: '90%', md: '40%' });
+  const side = useBreakpointValue({ base: '30%', md: '30px' });
+
   return (
 
-    <div>
+    <>
         
       {/* Navbar spec */}
       <Navbar/>
 
       <Center>
-
       {/* Hero spec */}
       <Hero/>
 
-
       </Center>
-
 
       <Restaurant/>
       
@@ -68,17 +90,61 @@ export default function Home({dce, atleticas, empresas}) {
       </Center>
       
       <Center>
+       <Box
+        alignItems="center"
+        position={'relative'}
+        height={{ base: '4xl', sm: '2xl', md: '4xl' }}
+        width={'600px'}
+        overflow={'hidden'}>
 
-        <Grid templateColumns={{base: 'repeat(1, 1fr)', sm:'repeat(2, 1fr)', md: 'repeat(3, 1fr)'}} gap={{base: '1', sm:'1', md: '6'}}>
-      
-      {dce.results.map((dc, index) => (
-        
-          <div  key={dc.id}>
-            
+        {/* CSS files for react-slick */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+
+      {/* Left Icon */}
+      <IconButton
+        aria-label="left-arrow"
+        variant="ghost"
+        position="absolute"
+        left={side}
+        top={top}
+        transform={'translate(0%, -50%)'}
+        zIndex={2}
+        onClick={() => slider?.slickPrev()}>
+        <BiLeftArrowAlt size="40px" />
+      </IconButton>
+
+      {/* Right Icon */}
+      <IconButton
+        aria-label="right-arrow"
+        variant="ghost"
+        position="absolute"
+        right={side}
+        top={top}
+        transform={'translate(0%, -50%)'}
+        zIndex={2}
+        onClick={() => slider?.slickNext()}>
+        <BiRightArrowAlt size="40px" />
+      </IconButton>
+
+      {/* Slider */}
+      <Slider {...settings} ref={(slider) => setSlider(slider)}>
+
+      {dce.results.map((dc, index) => (  
+          <div key={dc.id}>
             <Box
               role={'group'}
-              p="2"
-              m={10}
+              p="1"
+              m={{ base: '10', md: '125' }}
               maxW={'350px'}
               w={'full'}
               bg={useColorModeValue('white', 'gray.800')}
@@ -97,7 +163,7 @@ export default function Home({dce, atleticas, empresas}) {
                   w: 'full',
                   h: 'full',
                   pos: 'absolute',
-                  top: 5,
+                  top: 2,
                   left: 0,
                   backgroundImage: `url(${dc.data.baner?.url})`,
                   filter: 'blur(15px)',
@@ -145,14 +211,24 @@ export default function Home({dce, atleticas, empresas}) {
                 </Link>
               </Box>
             </Box>
+      
           </div>
         ))}
-     </Grid>
+      </Slider>
+    </Box>
     </Center>
 
     <Center>
-        <Heading id="atl" p={10}>Atléticas</Heading>
-    </Center>
+        <Heading id='atl' 
+          p={10}
+          fontWeight={200}
+          fontSize={{ base: '2xl', sm: '2xl', md: '5xl' }}
+          lineHeight={'110%'} >
+          Atléticas <ChevronDownIcon/> 
+        </Heading>
+      </Center>
+
+    <Center>
 
     <Grid templateColumns={{base: 'repeat(1, 1fr)', sm:'repeat(1, 1fr)', md: 'repeat(3, 1fr)'}} gap={{base: '1', sm:'1', md: '6'}}>
 
@@ -233,11 +309,19 @@ export default function Home({dce, atleticas, empresas}) {
         ))}
       </Grid>
 
-
+      </Center>
 
       <Center>
-        <Heading id="atl" p={10}>Empresas Júniors</Heading>
+        <Heading id='empre' 
+          p={10}
+          fontWeight={200}
+          fontSize={{ base: '2xl', sm: '2xl', md: '5xl' }}
+          lineHeight={'110%'} >
+          Empresas Júniors<ChevronDownIcon/> 
+        </Heading>
       </Center>
+
+    <Center>
 
     <Grid templateColumns={{base: 'repeat(1, 1fr)', sm:'repeat(1, 1fr)', md: 'repeat(3, 1fr)'}} gap={{base: '1', sm:'1', md: '6'}}>
 
@@ -317,12 +401,12 @@ export default function Home({dce, atleticas, empresas}) {
           </div>
         ))}
       </Grid>
-   
+      </Center>
+
     <Spacer/>        
+
     <Footer/>
-
-
-  </div>
+  </>
   )
 }
 

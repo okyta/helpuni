@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import {
+  Flex,
   MenuItem,
   MenuList,
   MenuButton,
@@ -28,36 +29,30 @@ export default function CallToActionWithAnnotation() {
   return (
     <>
 
-      <Container maxW={'5xl'}>
-
+      <Flex>
         <Stack
           as={Box}
-          textAlign={'center'}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 20 }}>
+          textAlign={{ base: 'center', sm: 'left'}}
+          spacing={{ base: 8, md: 24}}
+          py={{ base: 40, md: 28 }}>
             <Center>
-            <Tooltip  label="Faça uma doação e nos ajude a melhorar  🐶" isOpen rounded='full' bg="teal" >
+            <Tooltip  label="Faça uma doação e nos ajude a melhorar  🐶" placement="bottom" fixed isOpen rounded='full' bg="teal" >
               <Image 
-                pt={5}
-                boxSize="100000px"
                 objectFit="fill"
                 rounded="full"
                 src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2020/10/61a02a6a61422f1718b2dfc60db93592.png@300w_0e.webp" 
                 rel="stylesheet" 
                 alt="buycoffe"
                 boxSize="100px"
-
               />
-
             </Tooltip>
             </Center>
-          
-          
-          <Heading
-            fontWeight={200}
-            fontSize={{ base: '2xl', sm: '2xl', md: '7xl' }}
-            lineHeight={'110%'}>
 
+          <Heading
+            pt="30px"
+            fontWeight={180}
+            fontSize={{ base: '6xl', sm: '2xl', md: '7xl' }}
+            lineHeight={'90%'}>
             Bem vindo calouro {}<br />
             <Text as={'span'} color={'green.400'} fontSize={{ base: '2xl', sm: '2xl', md: '5xl' }}>
               Veja opções e contatos para lhe ajudar nessa aventura.
@@ -65,7 +60,6 @@ export default function CallToActionWithAnnotation() {
               Conheça-nós e seja um <Text color={"red.500"} as="u">membro</Text> 🙈
             </Text>
           </Heading>
-          
           
           <Stack
             direction={'column'}
@@ -89,6 +83,11 @@ export default function CallToActionWithAnnotation() {
                     <Link href='#org' color="whatsapp.700">
                       <MenuItem>Organizações Estudantis <ExternalLinkIcon mx="1px" margin='1'/> </MenuItem>
                     </Link>
+
+                    <Link href='#empre' color="whatsapp.700">
+                      <MenuItem>Empresas Júniors<ExternalLinkIcon mx="1px" margin='1'/></MenuItem>
+                    </Link>
+
                     <Link 
                       href='#atl' 
                       isInternal 
@@ -97,6 +96,10 @@ export default function CallToActionWithAnnotation() {
                     <MenuItem>
                       Atléticas<ExternalLinkIcon mx="1px" margin='1'/>
                     </MenuItem>
+                    </Link>
+
+                     <Link href='#res' isInternal color="whatsapp.700">
+                    <MenuItem>Preço Restaurantes <ExternalLinkIcon mx="1px" margin='1'/>  </MenuItem>
                     </Link>
 
                     <Link 
@@ -123,14 +126,12 @@ export default function CallToActionWithAnnotation() {
                       <MenuItem>Serviços <ExternalLinkIcon mx="1px" margin='1'/> </MenuItem>
                     </Link>
 
-                    <Link href='#res' isInternal color="whatsapp.700">
-                    <MenuItem>Preço Restaurantes <ExternalLinkIcon mx="1px" margin='1'/>  </MenuItem>
-                    </Link>
+                   
                     
                   </MenuList>
                 </Menu>
             
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
+            <Button variant={'link'} colorScheme={'pink'} size={'sm'} >
               <Link href="https://icredi.me">
               Conheça-nós
               </Link>
@@ -156,7 +157,7 @@ export default function CallToActionWithAnnotation() {
             </Box>
           </Stack>
         </Stack>
-      </Container>
+      </Flex>
     </>
   );
 }
