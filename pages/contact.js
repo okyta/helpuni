@@ -63,18 +63,7 @@ export default function contact() {
                       _hover={{ border: '2px solid #1C6FEB' }}
                       leftIcon={<MdEmail color="#1970F1" size="20px" />}
                     >
-                      hello@abc.com
-                    </Button>
-                    <Button
-                      size="md"
-                      height="48px"
-                      width="200px"
-                      variant="ghost"
-                      color="#DCE2FF"
-                      _hover={{ border: '2px solid #1C6FEB' }}
-                      leftIcon={<MdLocationOn color="#1970F1" size="20px" />}
-                    >
-                      Karnavati, India
+                      me@icredi.me
                     </Button>
                   </VStack>
                 </Box>

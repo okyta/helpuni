@@ -70,6 +70,19 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
 
   return (
     <>
+      <script
+        data-name="BMC-Widget"
+        data-cfasync="false"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="helpuni"
+        data-description="Support me on Buy me a coffee!"
+        data-message="Se lhe ajudou, faça uma doação : )"
+        data-color="#FFDD00"
+        data-position="Left"
+        data-x_margin="18"
+        data-y_margin="18"
+      ></script>
+
       {/* Navbar spec */}
       <Navbar />
 

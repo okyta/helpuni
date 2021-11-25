@@ -15,15 +15,16 @@ export default function SimpleCookiePreference() {
         justifyContent="space-between"
       >
         <Text fontSize={{ base: 'sm' }} textAlign={'left'} maxW={'4xl'}>
-          We use cookies and similar technologies to help personalise content,
-          tailor and measure ads, and provide a better experience. By clicking
-          OK or turning an option on in Cookie Preferences, you agree to this,
-          as outlined in our Cookie Policy. To change preferences or withdraw
-          consent, please update your Cookie Preferences.
+          Utilizamos cookies e tecnologias semelhantes para ajudar a
+          personalizar o conteúdo, personalizar e medir anúncios, e proporcionar
+          uma melhor experiência. Ao clicar em OK ou ligando uma opção em
+          Preferências de Biscoitos, concorda com isto, como delineado na nossa
+          Política de Cookie. Para alterar preferências ou retirar
+          consentimento, por favor actualize as suas Preferências de Cookie.
         </Text>
         <Stack direction={{ base: 'column', md: 'row' }}>
           <Button variant="outline" colorScheme="green">
-            Cookie Preferences
+            Preferências de Cookie
           </Button>
           <Button colorScheme="green">OK</Button>
         </Stack>
