@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://dicebear.com/api/male/seed.svg?mood=happy" width="124" /> <br />HelpUni</h1>
+<h1 align="center"><img src="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg" width="124" /> <br />HelpUni</h1>
 <p align="center"><strong>Acessibilidade para todos.</strong></p>
 
 <p align="center">
