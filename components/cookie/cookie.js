@@ -12,7 +12,8 @@ export default function SimpleCookiePreference() {
 
       <Stack
         direction={{ base: 'column', md: 'row' }}
-        justifyContent="space-between">
+        justifyContent="space-between"
+      >
         <Text fontSize={{ base: 'sm' }} textAlign={'left'} maxW={'4xl'}>
           We use cookies and similar technologies to help personalise content,
           tailor and measure ads, and provide a better experience. By clicking

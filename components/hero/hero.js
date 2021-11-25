@@ -1,6 +1,9 @@
 import Head from 'next/head';
 
 import {
+  LinkOverlay,
+  LinkBox,
+  Spacer,
   Flex,
   MenuItem,
   MenuList,
@@ -21,119 +24,131 @@ import {
   createIcon,
 } from '@chakra-ui/react';
 
-import { ChevronDownIcon, ExternalLinkIcon  } from '@chakra-ui/icons'
-
-
+import { ChevronDownIcon, ExternalLinkIcon, EmailIcon } from '@chakra-ui/icons';
+import { BsGithub } from 'react-icons/bs';
 
 export default function CallToActionWithAnnotation() {
   return (
     <>
-
       <Flex>
         <Stack
           as={Box}
-          textAlign={{ base: 'center', sm: 'left'}}
-          spacing={{ base: 8, md: 24}}
-          py={{ base: 40, md: 28 }}>
-            <Center>
-            <Tooltip  label="Faça uma doação e nos ajude a melhorar  🐶" placement="bottom" fixed isOpen rounded='full' bg="teal" >
-              <Image 
-                objectFit="fill"
-                rounded="full"
-                src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2020/10/61a02a6a61422f1718b2dfc60db93592.png@300w_0e.webp" 
-                rel="stylesheet" 
-                alt="buycoffe"
-                boxSize="100px"
-              />
-            </Tooltip>
-            </Center>
+          textAlign={{ base: 'center', sm: 'left' }}
+          spacing={{ base: 8, md: 24 }}
+          py={{ base: 40, md: 28 }}
+        >
+          <Center>
+            <Image
+              objectFit="fill"
+              rounded="full"
+              src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2020/10/61a02a6a61422f1718b2dfc60db93592.png@300w_0e.webp"
+              rel="stylesheet"
+              alt="buycoffe"
+              boxSize="100px"
+            />
+          </Center>
 
           <Heading
             pt="30px"
             fontWeight={180}
             fontSize={{ base: '6xl', sm: '2xl', md: '7xl' }}
-            lineHeight={'90%'}>
-            Bem vindo calouro {}<br />
-            <Text as={'span'} color={'green.400'} fontSize={{ base: '2xl', sm: '2xl', md: '5xl' }}>
+            lineHeight={'90%'}
+          >
+            Bem vindo calouro {}
+            <br />
+            <Text
+              as={'span'}
+              color={'green.400'}
+              fontSize={{ base: '2xl', sm: '2xl', md: '5xl' }}
+            >
               Veja opções e contatos para lhe ajudar nessa aventura.
-              <br/>
-              Conheça-nós e seja um <Text color={"red.500"} as="u">membro</Text> 🙈
+              <br />
+              Conheça-nós e seja um{' '}
+              <Text color={'red.500'} as="u">
+                <Link href="#atl">membro</Link>
+              </Text>{' '}
+              🙈
             </Text>
           </Heading>
-          
+
           <Stack
             direction={'column'}
             spacing={3}
             align={'center'}
             alignSelf={'center'}
-            position={'relative'}>
-            
-              <Menu>
-                  <MenuButton
-                    colorScheme={'green'}
-                    as={Button} 
-                    rightIcon={<ChevronDownIcon />} 
-                    bg="green.400" 
-                    rounded='full' 
-                    _hover={{bg: 'green.500'}}>
+            position={'relative'}
+          >
+            <Menu>
+              <MenuButton
+                colorScheme={'green'}
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                bg="green.500"
+                rounded="full"
+                _hover={{ bg: 'green.500' }}
+              >
+                Começar
+              </MenuButton>
+              <MenuList rounded="md" colorScheme={'green'}>
+                <Link href="#org" color="whatsapp.700">
+                  <MenuItem>
+                    Organizações Estudantis{' '}
+                    <ExternalLinkIcon mx="1px" margin="1" />{' '}
+                  </MenuItem>
+                </Link>
 
-                    Começar
-                  </MenuButton>
-                  <MenuList rounded="md" colorScheme={'green'}>
-                    <Link href='#org' color="whatsapp.700">
-                      <MenuItem>Organizações Estudantis <ExternalLinkIcon mx="1px" margin='1'/> </MenuItem>
-                    </Link>
+                <Link href="#empre" color="whatsapp.700">
+                  <MenuItem>
+                    Empresas Júniors
+                    <ExternalLinkIcon mx="1px" margin="1" />
+                  </MenuItem>
+                </Link>
 
-                    <Link href='#empre' color="whatsapp.700">
-                      <MenuItem>Empresas Júniors<ExternalLinkIcon mx="1px" margin='1'/></MenuItem>
-                    </Link>
+                <Link href="#empre" color="whatsapp.700">
+                  <MenuItem>
+                    Estágios
+                    <ExternalLinkIcon mx="1px" margin="1" />
+                  </MenuItem>
+                </Link>
 
-                    <Link 
-                      href='#atl' 
-                      isInternal 
-                      color="whatsapp.700">
+                <Link href="#atl" isInternal color="whatsapp.700">
+                  <MenuItem>
+                    Atléticas
+                    <ExternalLinkIcon mx="1px" margin="1" />
+                  </MenuItem>
+                </Link>
 
-                    <MenuItem>
-                      Atléticas<ExternalLinkIcon mx="1px" margin='1'/>
-                    </MenuItem>
-                    </Link>
+                <Link href="#res" isInternal color="whatsapp.700">
+                  <MenuItem>
+                    Preço Restaurantes <ExternalLinkIcon mx="1px" margin="1" />{' '}
+                  </MenuItem>
+                </Link>
 
-                     <Link href='#res' isInternal color="whatsapp.700">
-                    <MenuItem>Preço Restaurantes <ExternalLinkIcon mx="1px" margin='1'/>  </MenuItem>
-                    </Link>
+                <Link href="#org" isInternal color="whatsapp.700">
+                  <MenuItem>
+                    Repúblicas Masculinas{' '}
+                    <ExternalLinkIcon mx="1px" margin="1" />
+                  </MenuItem>
+                </Link>
 
-                    <Link 
-                      href='#org'
-                      isInternal
-                      color="whatsapp.700">
+                <Link href="#org" isInternal color="whatsapp.700">
+                  <MenuItem>
+                    Repúblicas Femininas
+                    <ExternalLinkIcon mx="1px" margin="1" />
+                  </MenuItem>
+                </Link>
 
-                    <MenuItem>
-                      Repúblicas Masculinas <ExternalLinkIcon mx="1px" margin='1'/>
-                    </MenuItem>
-                    </Link>
+                <Link href="#org" isInternal color="whatsapp.700">
+                  <MenuItem>
+                    Serviços <ExternalLinkIcon mx="1px" margin="1" />{' '}
+                  </MenuItem>
+                </Link>
+              </MenuList>
+            </Menu>
 
-                    <Link 
-                      href='#org' 
-                      isInternal 
-                      color="whatsapp.700">
-
-                    <MenuItem>
-                      Repúblicas Femininas<ExternalLinkIcon mx="1px" margin='1'/>
-                    </MenuItem>
-                    </Link>
-
-                    <Link href='#org' isInternal color="whatsapp.700">
-                      <MenuItem>Serviços <ExternalLinkIcon mx="1px" margin='1'/> </MenuItem>
-                    </Link>
-
-                   
-                    
-                  </MenuList>
-                </Menu>
-            
-            <Button variant={'link'} colorScheme={'pink'} size={'sm'} >
-              <Link href="https://icredi.me">
-              Conheça-nós
+            <Button variant={'link'} colorScheme={'pink'} size={'sm'}>
+              <Link href="https://icredi.me" isExternal>
+                Conheça-nós <ExternalLinkIcon />
               </Link>
             </Button>
             <Box>
@@ -151,10 +166,50 @@ export default function CallToActionWithAnnotation() {
                 position={'absolute'}
                 right={'-125px'}
                 top={'-15px'}
-                transform={'rotate(10deg)'}>
+                transform={'rotate(10deg)'}
+              >
                 Clique aqui :)
               </Text>
             </Box>
+
+            <LinkBox id="infoDevs" pt={4}>
+              <Tooltip
+                label="Participe e ajude a melhorar o trabalho. 😉"
+                placement="top"
+                rounded="md"
+                hasArrow
+              >
+                <LinkOverlay
+                  href="https://github.com/anakix/helpuni.git"
+                  isExternal
+                >
+                  <Button
+                    rounded={'full'}
+                    colorScheme={'green'}
+                    align={'center'}
+                    rightIcon={<BsGithub />}
+                  >
+                    Github
+                  </Button>
+                </LinkOverlay>
+              </Tooltip>
+            </LinkBox>
+            <LinkBox>
+              <Tooltip
+                label="😉"
+                placement="right-end"
+                rounded="md"
+                isOpen
+                hasArrow
+              >
+                <LinkOverlay href="mailto:me@icredi.me">
+                  <Button rounded={'full'} colorScheme={'green'}>
+                    {' '}
+                    <EmailIcon />
+                  </Button>
+                </LinkOverlay>
+              </Tooltip>
+            </LinkBox>
           </Stack>
         </Stack>
       </Flex>

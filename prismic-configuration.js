@@ -1,8 +1,8 @@
-import Prismic from "prismic-javascript";
+import Prismic from 'prismic-javascript';
 
-export const apiEndpoint = "https://unihelp.prismic.io/api/v2";
+export const apiEndpoint = 'https://unihelp.prismic.io/api/v2';
 
-export const accessToken = " ";
+export const accessToken = ' ';
 
 // creating a prismic client  object
 

@@ -28,7 +28,8 @@ const NavLink = ({ children }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}>
+    href={'#'}
+  >
     {children}
   </Link>
 );
@@ -39,37 +40,49 @@ export default function Nav() {
 
   return (
     <>
-      
-      <Box bg={useColorModeValue('white', 'gray.900')} px={2} >
+      <Box bg={useColorModeValue('white', 'gray.900')} px={2}>
         <Flex h={20} alignItems={'center'} justifyContent={'center'}>
-          
           <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={{ base: '20', sm: '100', md: '1030' }}>
-            <Tooltip label="Modo noturno" rounded='full'>
-              <Button onClick={toggleColorMode} rounded='full' size={'lg'}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
-            </Tooltip>
+            <Stack
+              direction={'row'}
+              spacing={{ base: '20', sm: '100', md: '1030' }}
+            >
+              <Tooltip label="Modo noturno" rounded="full">
+                <Button onClick={toggleColorMode} rounded="full" size={'lg'}>
+                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                </Button>
+              </Tooltip>
               <Menu>
-                <Tooltip label="Bora tomar uma ? 🍺" rounded='full' isOpen bg="teal" placement='bottom'>
-                    <MenuButton
-                      as={Button}
-                      rounded={'full'}
-                      variant={'link'}
-                      cursor={'pointer'}
-                      minW={1}>
-                      <Avatar
-                        size={'lg'}
-                        src={'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'}
-                      />
-                    </MenuButton>
+                <Tooltip
+                  label="Bora tomar uma ? 🍺"
+                  rounded="full"
+                  isOpen
+                  bg="teal"
+                  placement="bottom"
+                >
+                  <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={1}
+                  >
+                    <Avatar
+                      size={'lg'}
+                      src={
+                        'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'
+                      }
+                    />
+                  </MenuButton>
                 </Tooltip>
                 <MenuList alignItems={'center'}>
                   <br />
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'}
+                      src={
+                        'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'
+                      }
                     />
                   </Center>
                   <br />
@@ -78,15 +91,13 @@ export default function Nav() {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem >UNEMAT</MenuItem>
-                  
+                  <MenuItem>UNEMAT</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
           </Flex>
         </Flex>
       </Box>
-
     </>
   );
 }
