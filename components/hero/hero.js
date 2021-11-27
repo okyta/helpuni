@@ -35,7 +35,7 @@ export default function CallToActionWithAnnotation() {
           as={Box}
           textAlign={{ base: 'center', sm: 'left' }}
           spacing={{ base: 8, md: 24 }}
-          py={{ base: 40, md: 28 }}
+          py={{ base: 18, md: 24 }}
         >
           <Center>
             <Image

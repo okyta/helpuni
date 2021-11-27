@@ -9,6 +9,14 @@ import {
   ListIcon,
   Button,
   useColorModeValue,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
 } from '@chakra-ui/react';
 
 import { CheckIcon } from '@chakra-ui/icons';
@@ -38,46 +46,42 @@ export default function blogPostWithImage() {
           </Text>
         </Stack>
 
-        <Box bg={useColorModeValue('gray.50', 'gray.900')} px={6} py={6}>
-          <List spacing={3}>
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              Restaurante popular de Sinop
-            </ListItem>
-            <Stack direction={'row'} align={'center'} justify={'center'}>
-              <Text fontSize={'3xl'}>R$</Text>
-              <Text fontSize={'6xl'} fontWeight={800}>
-                5,15
-              </Text>
-              <Text color={'gray.500'}>/bandeja</Text>
-            </Stack>
-
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              Valor médio - Marmita
-            </ListItem>
-            <Stack direction={'row'} align={'center'} justify={'center'}>
-              <Text fontSize={'3xl'}>R$</Text>
-              <Text fontSize={'6xl'} fontWeight={800}>
-                14,00
-              </Text>
-              <Text color={'gray.500'}></Text>
-            </Stack>
-
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              Valor médio - Aluguel - 2 Quartos
-            </ListItem>
-            <Stack direction={'row'} align={'center'} justify={'center'}>
-              <Text fontSize={'3xl'}>R$</Text>
-              <Text fontSize={'6xl'} fontWeight={800}>
-                725,00
-              </Text>
-              <Text color={'gray.500'}></Text>
-            </Stack>
-          </List>
-        </Box>
+        <Table variant="simple" colorScheme="teal">
+          <Tbody>
+            <Tr>
+              <Td>Restaurante Popular Sinop</Td>
+              <Td>Bandeija</Td>
+              <Td isNumeric>R$ 5.15</Td>
+            </Tr>
+            <Tr>
+              <Td>Valor médio - Marmita</Td>
+              <Td>Pequena</Td>
+              <Td isNumeric>R$ 14.00</Td>
+            </Tr>
+            <Tr>
+              <Td>Valor médio - Aluguel</Td>
+              <Td>2 Quartos</Td>
+              <Td isNumeric>R$ 725.00</Td>
+            </Tr>
+          </Tbody>
+        </Table>
       </Box>
     </Center>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`http://ip.jsontest.com/`);
+  const data = await res.json();
+  console.log(data);
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
 }

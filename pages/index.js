@@ -77,7 +77,7 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
         data-id="helpuni"
         data-description="Support me on Buy me a coffee!"
         data-message="Se lhe ajudou, faça uma doação : )"
-        data-color="#FFDD00"
+        data-color="#38A169"
         data-position="Left"
         data-x_margin="18"
         data-y_margin="18"
