@@ -50,6 +50,9 @@ const SocialButton = ({ children, label, href }) => {
 };
 
 export default function SmallCentered() {
+  const data = new Date();
+  const year = data.getFullYear();
+
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
@@ -80,7 +83,7 @@ export default function SmallCentered() {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}
         >
-          <Text>© 2022 Cooperativa iCredi. Todos os direitos reservados</Text>
+          <Text>© {year} Cooperativa iCredi. Todos os direitos reservados</Text>
 
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Twitter'} href={'#'}>

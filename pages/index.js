@@ -11,7 +11,8 @@ import { Carousel } from 'react-responsive-carousel';
 import { Client } from '../prismic-configuration';
 import { RichText } from 'prismic-reactjs';
 import {
-  Kbd,
+  BeatLoader,
+  Button,
   Input,
   Grid,
   Tooltip,
@@ -66,6 +67,7 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
   const [slider, setSlider] = useState(null);
 
   const [value, setValue] = useState('');
+  const [click, setClick] = useState(false);
 
   const handleChange = (event) => setValue(event.target.value);
 
@@ -76,19 +78,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
 
   return (
     <>
-      <script
-        data-name="BMC-Widget"
-        data-cfasync="false"
-        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-        data-id="helpuni"
-        data-description="Support me on Buy me a coffee!"
-        data-message="Se lhe ajudou, faça uma doação : )"
-        data-color="#38A169"
-        data-position="Left"
-        data-x_margin="18"
-        data-y_margin="18"
-      ></script>
-
       {/* Navbar spec */}
       <Navbar />
 
@@ -103,19 +92,35 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
             placement="right"
           >
             <Image
+              borderRadius="full"
               src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+              alt={`${value}`}
             />
           </Tooltip>
-
-          <Input
-            value={value}
-            onChange={handleChange}
-            variant="filled"
-            placeholder="Seu nome para o avatar"
-          />
+          <Flex>
+            <Input
+              isDisabled={click}
+              placeholder="Seu nome para avatar"
+              value={value}
+              onChange={handleChange}
+              variant="filled"
+            />
+            <Link
+              isExternal
+              href={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+            >
+              <Button
+                margin="px"
+                colorScheme="yellow"
+                isDisabled={click}
+                onClick={() => setClick(true)}
+              >
+                {click ? 'isso ai 🥴' : 'quero'}
+              </Button>
+            </Link>
+          </Flex>
         </Box>
       </Center>
-
       <Center>
         {/* Hero spec */}
         <Hero />

@@ -52,9 +52,9 @@ export default function CallToActionWithAnnotation() {
             >
               Veja opções e contatos para lhe ajudar nessa aventura.
               <br />
-              Conheça-nós e seja um{' '}
+              Conheça-nós e{' '}
               <Text color={'red.500'} as="u">
-                <Link href="#atl">membro</Link>
+                <Link href="#atl">participe</Link>
               </Text>{' '}
               🙈
             </Text>
