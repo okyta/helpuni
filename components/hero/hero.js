@@ -37,17 +37,6 @@ export default function CallToActionWithAnnotation() {
           spacing={{ base: 8, md: 24 }}
           py={{ base: 18, md: 24 }}
         >
-          <Center>
-            <Image
-              objectFit="fill"
-              rounded="full"
-              src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2020/10/61a02a6a61422f1718b2dfc60db93592.png@300w_0e.webp"
-              rel="stylesheet"
-              alt="buycoffe"
-              boxSize="100px"
-            />
-          </Center>
-
           <Heading
             pt="30px"
             fontWeight={180}

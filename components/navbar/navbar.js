@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import {
+  Image,
   Tooltip,
   Box,
   Flex,
@@ -45,36 +46,23 @@ export default function Nav() {
           <Flex alignItems={'center'}>
             <Stack
               direction={'row'}
-              spacing={{ base: '20', sm: '100', md: '1030' }}
+              spacing={{ base: '280', sm: '100', md: '1030' }}
             >
               <Tooltip label="Modo noturno" rounded="full">
                 <Button onClick={toggleColorMode} rounded="full" size={'lg'}>
                   {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
+
               <Menu>
-                <Tooltip
-                  label="Bora tomar uma ? 🍺"
-                  rounded="full"
-                  isOpen
-                  bg="teal"
-                  placement="bottom"
-                >
-                  <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    variant={'link'}
-                    cursor={'pointer'}
-                    minW={1}
-                  >
-                    <Avatar
-                      size={'lg'}
-                      src={
-                        'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'
-                      }
-                    />
-                  </MenuButton>
-                </Tooltip>
+                <MenuButton
+                  as={Button}
+                  rounded={'full'}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={1}
+                ></MenuButton>
+
                 <MenuList alignItems={'center'}>
                   <br />
                   <Center>

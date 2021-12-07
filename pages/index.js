@@ -11,6 +11,8 @@ import { Carousel } from 'react-responsive-carousel';
 import { Client } from '../prismic-configuration';
 import { RichText } from 'prismic-reactjs';
 import {
+  Kbd,
+  Input,
   Grid,
   Tooltip,
   Link,
@@ -63,6 +65,10 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
 
   const [slider, setSlider] = useState(null);
 
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => setValue(event.target.value);
+
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '40%' });
@@ -85,6 +91,30 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
 
       {/* Navbar spec */}
       <Navbar />
+
+      <Center>
+        <Box bg={"useColorModeValue('white', 'gray.800')"}>
+          <Tooltip
+            label="Bora tomar uma ? 🍺"
+            rounded="full"
+            isOpen
+            hasArrow
+            bg="teal"
+            placement="right"
+          >
+            <Image
+              src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+            />
+          </Tooltip>
+
+          <Input
+            value={value}
+            onChange={handleChange}
+            variant="filled"
+            placeholder="Seu nome para o avatar"
+          />
+        </Box>
+      </Center>
 
       <Center>
         {/* Hero spec */}
