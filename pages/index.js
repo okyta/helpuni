@@ -4,6 +4,7 @@ import Footer from '../components/footer/footer.js';
 import Cookie from '../components/cookie/cookie.js';
 import Restaurant from '../components/restaurant/card.js';
 
+import { saveAs } from 'file-saver';
 import Prismic from 'prismic-javascript';
 import React, { useState, useEffect } from 'react';
 
@@ -76,6 +77,13 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
   const top = useBreakpointValue({ base: '90%', md: '40%' });
   const side = useBreakpointValue({ base: '30%', md: '30px' });
 
+  const saveFile = () => {
+    saveAs(
+      `https://avatars.dicebear.com/api/adventurer/${value}.png`,
+      `${value}.png`
+    );
+  };
+
   return (
     <>
       {/* Navbar spec */}
@@ -105,19 +113,18 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
               onChange={handleChange}
               variant="filled"
             />
-            <Link
-              isExternal
-              href={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+
+            <Button
+              margin="px"
+              colorScheme="yellow"
+              isDisabled={click}
+              onClick={() => {
+                setClick(true);
+                saveFile();
+              }}
             >
-              <Button
-                margin="px"
-                colorScheme="yellow"
-                isDisabled={click}
-                onClick={() => setClick(true)}
-              >
-                {click ? 'isso ai 🥴' : 'quero'}
-              </Button>
-            </Link>
+              {click ? 'isso ai 🥴' : 'quero'}
+            </Button>
           </Flex>
         </Box>
       </Center>
