@@ -206,7 +206,7 @@ export default function CallToActionWithAnnotation() {
   );
 }
 
-const Arrow = createIcon({
+export const Arrow = createIcon({
   displayName: 'Arrow',
   viewBox: '0 0 72 24',
   path: (

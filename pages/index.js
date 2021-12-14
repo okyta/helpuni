@@ -1,13 +1,14 @@
-import Hero from '../components/hero/hero.js';
+import Hero, { Arrow } from '../components/hero/hero.js';
 import Navbar from '../components/navbar/navbar.js';
 import Footer from '../components/footer/footer.js';
 import Cookie from '../components/cookie/cookie.js';
 import Restaurant from '../components/restaurant/card.js';
 
-import { saveAs } from 'file-saver';
 import Prismic from 'prismic-javascript';
 import React, { useState, useEffect } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+import { saveAs } from 'file-saver';
 import { Carousel } from 'react-responsive-carousel';
 import { Client } from '../prismic-configuration';
 import { RichText } from 'prismic-reactjs';
@@ -36,8 +37,11 @@ import {
   Container,
 } from '@chakra-ui/react';
 
+import CookieConsent, { Cookies } from 'react-cookie-consent';
+
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+
 // And react-slick as our Carousel Lib
 import Slider from 'react-slick';
 
@@ -61,12 +65,30 @@ const settings = {
   slidesToScroll: 1,
 };
 
+const cookieSet = () => {
+  return (
+    <>
+      <CookieConsent
+        location="bottom"
+        buttonText="Concordo"
+        cookieName="CookieConsent"
+        cookieValue={'&' + 'true'}
+        style={{ background: 'teal' }}
+        buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+        expires={150}
+      >
+        Utilizamos cookies e tecnologias semelhantes para ajudar a personalizar
+        o conteúdo.
+      </CookieConsent>
+    </>
+  );
+};
+
 export default function Home({ dce, atleticas, empresas, estagio }) {
   // As we have used custom buttons, we need a reference variable to
   // change the state
 
   const [slider, setSlider] = useState(null);
-
   const [value, setValue] = useState('');
   const [click, setClick] = useState(false);
 
@@ -74,37 +96,51 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
+  //
+
   const top = useBreakpointValue({ base: '90%', md: '40%' });
   const side = useBreakpointValue({ base: '30%', md: '30px' });
 
   const saveFile = () => {
     saveAs(
       `https://avatars.dicebear.com/api/adventurer/${value}.png`,
-      `${value}.png`
+      `${textSHA()}.png`
     );
+  };
+
+  const textSHA = () => {
+    return `${value}` + '-' + uuidv4(value) + '.h4elpun1i';
   };
 
   return (
     <>
-      {/* Navbar spec */}
+      {cookieSet()}
+
+      {/* Navbar */}
       <Navbar />
 
       <Center>
+        <Box bg="teal" rounded="full" color="white">
+          {textSHA()}
+        </Box>
+        <Icon
+          as={Arrow}
+          color={useColorModeValue('gray.800', 'gray.300')}
+          w={16}
+        />
+        <Text fontSize={'lg'} fontFamily={'Caveat'} transform={'rotate(10deg)'}>
+          Salve sua hash :)
+        </Text>
+      </Center>
+
+      <Center>
         <Box bg={"useColorModeValue('white', 'gray.800')"}>
-          <Tooltip
-            label="Bora tomar uma ? 🍺"
-            rounded="full"
-            isOpen
-            hasArrow
-            bg="teal"
-            placement="right"
-          >
-            <Image
-              borderRadius="full"
-              src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
-              alt={`${value}`}
-            />
-          </Tooltip>
+          <Image
+            borderRadius="full"
+            src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+            alt={`${value}`}
+          />
+
           <Flex>
             <Input
               isDisabled={click}
@@ -132,8 +168,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
         {/* Hero spec */}
         <Hero />
       </Center>
-
-      <Restaurant />
 
       <Center>
         <Heading
