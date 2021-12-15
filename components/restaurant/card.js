@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 
 import { CheckIcon } from '@chakra-ui/icons';
+import { motion } from 'framer-motion';
 
 export default function blogPostWithImage() {
   return (

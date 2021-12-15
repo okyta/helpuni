@@ -20,6 +20,8 @@ import {
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
+import { motion } from 'framer-motion';
+
 const NavLink = ({ children }) => (
   <Link
     px={2}
@@ -41,47 +43,29 @@ export default function Nav() {
 
   return (
     <>
-      <Box bg={useColorModeValue('white', 'gray.900')} px={2}>
-        <Flex h={20} alignItems={'center'} justifyContent={'center'}>
+      <Box
+        bg={useColorModeValue('white', 'gray.70')}
+        m={{ base: '4', sm: '2', md: '6' }}
+      >
+        <Flex h={20} alignItems={'center'} justifyContent={'left'}>
           <Flex alignItems={'center'}>
             <Stack
               direction={'row'}
               spacing={{ base: '280', sm: '100', md: '1030' }}
             >
               <Tooltip label="Modo noturno" rounded="full">
-                <Button onClick={toggleColorMode} rounded="full" size={'lg'}>
-                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                </Button>
+                <motion.button
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 1 },
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Button onClick={toggleColorMode} rounded="full" size={'lg'}>
+                    {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                  </Button>
+                </motion.button>
               </Tooltip>
-
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={1}
-                ></MenuButton>
-
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={'2xl'}
-                      src={
-                        'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg'
-                      }
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Adm</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>UNEMAT</MenuItem>
-                </MenuList>
-              </Menu>
             </Stack>
           </Flex>
         </Flex>

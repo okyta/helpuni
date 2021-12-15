@@ -1,12 +1,15 @@
+import Cookie from '../components/cookie/cookie.js';
 import Hero, { Arrow } from '../components/hero/hero.js';
 import Navbar from '../components/navbar/navbar.js';
 import Footer from '../components/footer/footer.js';
-import Cookie from '../components/cookie/cookie.js';
 import Restaurant from '../components/restaurant/card.js';
-
 import Prismic from 'prismic-javascript';
-import React, { useState, useEffect } from 'react';
 
+import React, { useState, useEffect, useContext } from 'react';
+
+import { motion } from 'framer-motion';
+
+import { LibContext } from '../context/libContext';
 import { v4 as uuidv4 } from 'uuid';
 import { saveAs } from 'file-saver';
 import { Carousel } from 'react-responsive-carousel';
@@ -37,8 +40,6 @@ import {
   Container,
 } from '@chakra-ui/react';
 
-import CookieConsent, { Cookies } from 'react-cookie-consent';
-
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
@@ -52,55 +53,19 @@ import {
   Icon,
 } from '@chakra-ui/icons';
 
-// Settings for the slider
-const settings = {
-  dots: true,
-  arrows: false,
-  fade: true,
-  infinite: true,
-  autoplay: true,
-  speed: 500,
-  autoplaySpeed: 4000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
-
-const cookieSet = () => {
-  return (
-    <>
-      <CookieConsent
-        location="bottom"
-        buttonText="Concordo"
-        cookieName="CookieConsent"
-        cookieValue={'&' + 'true'}
-        style={{ background: 'teal' }}
-        buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-        expires={150}
-      >
-        Utilizamos cookies e tecnologias semelhantes para ajudar a personalizar
-        o conteúdo.
-      </CookieConsent>
-    </>
-  );
-};
-
 export default function Home({ dce, atleticas, empresas, estagio }) {
+  const [value, setValue] = useState('');
+
   // As we have used custom buttons, we need a reference variable to
   // change the state
-
   const [slider, setSlider] = useState(null);
-  const [value, setValue] = useState('');
   const [click, setClick] = useState(false);
-
   const handleChange = (event) => setValue(event.target.value);
 
-  // These are the breakpoints which changes the position of the
-  // buttons as the screen size changes
-  //
+  // Context lib
+  const { settings, top, side } = useContext(LibContext);
 
-  const top = useBreakpointValue({ base: '90%', md: '40%' });
-  const side = useBreakpointValue({ base: '30%', md: '30px' });
-
+  // Fun internal
   const saveFile = () => {
     saveAs(
       `https://avatars.dicebear.com/api/adventurer/${value}.png`,
@@ -112,34 +77,40 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
     return `${value}` + '-' + uuidv4(value) + '.h4elpun1i';
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      {cookieSet()}
+      <Cookie />
 
       {/* Navbar */}
       <Navbar />
 
       <Center>
-        <Box bg="teal" rounded="full" color="white">
+        <Box bg="teal" rounded="md" color="white" m="10">
           {textSHA()}
         </Box>
         <Icon
           as={Arrow}
           color={useColorModeValue('gray.800', 'gray.300')}
-          w={16}
+          w={{ base: '4', sm: '2', md: '6' }}
         />
         <Text fontSize={'lg'} fontFamily={'Caveat'} transform={'rotate(10deg)'}>
           Salve sua hash :)
         </Text>
       </Center>
-
       <Center>
         <Box bg={"useColorModeValue('white', 'gray.800')"}>
-          <Image
-            borderRadius="full"
-            src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
-            alt={`${value}`}
-          />
+          <motion.div
+            animate={{ x: [10, 60, -60, 0] }}
+            transition={{ ease: 'easeOut', duration: 1 }}
+          >
+            <Image
+              borderRadius="full"
+              src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
+              alt={`${value}`}
+            />
+          </motion.div>
 
           <Flex>
             <Input
@@ -180,7 +151,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           Organizações estudantis <ChevronDownIcon />
         </Heading>
       </Center>
-
       <Center>
         <Box
           alignItems="center"
@@ -207,8 +177,8 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
             aria-label="left-arrow"
             variant="ghost"
             position="absolute"
-            left={side}
-            top={top}
+            left={useBreakpointValue(side)}
+            top={useBreakpointValue(top)}
             transform={'translate(0%, -50%)'}
             zIndex={2}
             onClick={() => slider?.slickPrev()}
@@ -231,6 +201,7 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           </IconButton>
 
           {/* Slider */}
+
           <Slider {...settings} ref={(slider) => setSlider(slider)}>
             {dce.results.map((dc, index) => (
               <div key={dc.id}>
@@ -314,7 +285,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           </Slider>
         </Box>
       </Center>
-
       <Center>
         <Heading
           id="atl"
@@ -326,7 +296,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           Atléticas <ChevronDownIcon />
         </Heading>
       </Center>
-
       <Center>
         <Grid
           templateColumns={{
@@ -423,7 +392,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           ))}
         </Grid>
       </Center>
-
       <Center>
         <Tooltip
           hasArrow
@@ -446,7 +414,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           <ChevronDownIcon />
         </Heading>
       </Center>
-
       <Center>
         <Grid
           templateColumns={{
@@ -539,7 +506,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           ))}
         </Grid>
       </Center>
-
       <Center>
         <Tooltip
           hasArrow
@@ -562,7 +528,6 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           <ChevronDownIcon />
         </Heading>
       </Center>
-
       <Center>
         <Grid
           templateColumns={{
@@ -653,9 +618,7 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
           ))}
         </Grid>
       </Center>
-
       <Spacer />
-
       <Footer />
     </>
   );
