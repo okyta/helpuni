@@ -100,20 +100,26 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
         </Text>
       </Center>
       <Center>
-        <Box bg={"useColorModeValue('white', 'gray.800')"}>
+
+        <Box bg={"useColorModeValue('white', 'gray.800')"} >
           <motion.div
             animate={{ x: [10, 60, -60, 0] }}
             transition={{ ease: 'easeOut', duration: 1 }}
           >
+
             <Image
+              alignContent={'center'}
+              w={420}
               borderRadius="full"
               src={`https://avatars.dicebear.com/api/adventurer/${value}.svg`}
               alt={`${value}`}
             />
-          </motion.div>
 
-          <Flex>
+          </motion.div>
+          <Flex justify={'center'}>
             <Input
+            w={{ base: '210', sm: '2xl', md: '60' }}
+            h={10}
               isDisabled={click}
               placeholder="Seu nome para avatar"
               value={value}
@@ -132,6 +138,16 @@ export default function Home({ dce, atleticas, empresas, estagio }) {
             >
               {click ? 'isso ai 🥴' : 'quero'}
             </Button>
+
+            <Icon
+              as={Arrow}
+              color={useColorModeValue('gray.800', 'gray.300')}
+              w={{ base: '1', sm: '2', md: '20' }}
+              transform={'rotate(-340deg)'}
+            />
+            <Text fontSize={'lg'} fontFamily={'Caveat'} transform={'rotate(2deg)'}>
+              Calouro adicione seu avatar ao Zap :)
+            </Text>
           </Flex>
         </Box>
       </Center>

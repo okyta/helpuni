@@ -37,7 +37,7 @@ export default function NotFound() {
         />
       </Center>
       <Text color={'gray.500'} mb={6} pt={10}>
-        Fique tranquilo. A Equipe da HelpUni está verificando o ocorrido.
+        Fique tranquilo. Em breve essa opção estará disponivel : )
       </Text>
 
       <Button

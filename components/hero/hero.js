@@ -191,7 +191,7 @@ export default function CallToActionWithAnnotation() {
                 isOpen
                 hasArrow
               >
-                <LinkOverlay href="mailto:me@icredi.me">
+                <LinkOverlay href="mailto:helpuni@icredi.me">
                   <Button rounded={'full'} colorScheme={'green'}>
                     {' '}
                     <EmailIcon />

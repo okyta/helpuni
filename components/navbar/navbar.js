@@ -48,10 +48,10 @@ export default function Nav() {
         m={{ base: '4', sm: '2', md: '6' }}
       >
         <Flex h={20} alignItems={'center'} justifyContent={'left'}>
-          <Flex alignItems={'center'}>
+          <Flex>
             <Stack
               direction={'row'}
-              spacing={{ base: '280', sm: '100', md: '1030' }}
+              spacing={{ base: '100', sm: '1000', md: '980' }}
             >
               <Tooltip label="Modo noturno" rounded="full">
                 <motion.button
@@ -66,10 +66,29 @@ export default function Nav() {
                   </Button>
                 </motion.button>
               </Tooltip>
+              <Flex h={20} alignItems={'center'} justifyContent={'right'}>
+                    <motion.button
+                        whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 1 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                      <Link href='404'>
+                        <Button  rounded="full" size={'lg'} bg={useColorModeValue('teal', 'gray.70')}>
+                        Happy hour 👽
+                        </Button>
+                      </Link>
+                    </motion.button>
+                </Flex>
             </Stack>
           </Flex>
         </Flex>
+
+
+
       </Box>
+
     </>
   );
 }
