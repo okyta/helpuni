@@ -37,7 +37,7 @@ export default function NotFound() {
         />
       </Center>
       <Text color={'gray.500'} mb={6} pt={10}>
-        Fique tranquilo. Em breve essa opção estará disponivel : )
+        Fique tranquilo. Em breve essa loja estará disponivel para você aproveitar : )
       </Text>
 
       <Button
